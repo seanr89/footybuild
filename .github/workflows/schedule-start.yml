@@ -9,11 +9,30 @@ on:
   schedule:
     - cron: 0 10 * * *
 
+permissions:
+  id-token: write
+  contents: read
 jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
     - name: Create annotation
       run: echo "Starting the run"
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Azure CLI script
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az account show
 
 
