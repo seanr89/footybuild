@@ -4,9 +4,10 @@
 name: .NET Run
 
 on:
-  push:
-    branches: [ 'main', '!dependabot/**' ]
-  pull_request:
+  workflow_dispatch:
+  # push:
+  #   branches: [ 'main', '!dependabot/**' ]
+  # pull_request:
 
 jobs:
   build:
