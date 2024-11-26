@@ -6,6 +6,7 @@ name: Docker - Build
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,5 +18,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+    - name: 'Build and push image'
+      uses: azure/docker-login@v2
+      with:
+        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_LOGIN_NAME }}
+        password: ${{ secrets.REGISTRY_LOGIN_PASSWORD }}
+      
+    - run: |
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/footyapp:latest
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/footyapp:latest
