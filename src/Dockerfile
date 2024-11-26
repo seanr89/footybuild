@@ -13,4 +13,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 COPY --from=build  /publish /app
 WORKDIR /app
 EXPOSE 80
-CMD ["./myWebApp"]
+ENTRYPOINT ["dotnet", "footy.api.dll"]
+# CMD ["./footy.api"]
