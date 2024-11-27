@@ -32,6 +32,22 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az account show
+            az containerapp list
+
+      - name: Azure container app
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az containerapp up \
+            --name my-container-app \
+            --resource-group my-container-apps \
+            --location northeurope \
+            --environment 'my-container-apps' \
+            --image mcr.microsoft.com/k8se/quickstart:latest \
+            --target-port 80 \
+            --ingress external \
+            --query properties.configuration.ingress.fqdn
+
 
 
