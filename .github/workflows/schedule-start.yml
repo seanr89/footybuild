@@ -40,15 +40,23 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az containerapp up \
-            --name my-container-app \
-            --resource-group my-container-apps \
-            --location northeurope \
-            --environment 'my-container-apps' \
-            --image mcr.microsoft.com/k8se/quickstart:latest \
-            --target-port 80 \
-            --ingress external \
-            --query properties.configuration.ingress.fqdn
+            az containerapp create -n my-container-app \
+            -g FootRG \
+            --image seanrreg.azurecr.io/footyapp:latest \
+            --environment footyappenv \
+            --cpu 0.5 --memory 1.0Gi \
+            --min-replicas 4 --max-replicas 8
+
+
+        # az containerapp up \
+        # --name my-container-app \
+        # --resource-group FootRG \
+        # --location northeurope \
+        # --environment 'my-container-apps' \
+        # --image mcr.microsoft.com/k8se/quickstart:latest \
+        # --target-port 80 \
+        # --ingress external \
+        # --query properties.configuration.ingress.fqdn
 
 
 
