@@ -26,20 +26,20 @@ jobs:
             az group show --name FootRG
 
       
-      - name: Azure container app env - delete
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az containerapp env delete \
-            -g my-container-apps \
-            -n my-container-apps \
-            --no-wait true --yes
-
-      # - name: Azure container app
+      # - name: Azure container app env - delete
       #   uses: azure/cli@v2
       #   with:
       #     azcliversion: latest
       #     inlineScript: |
-      #       az containerapp delete -g my-container-apps -n my-container-apps --yes
+      #       az containerapp env delete \
+      #       -g my-container-apps \
+      #       -n my-container-apps \
+      #       --no-wait true --yes
+
+      - name: Azure container app stop
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az containerapp job stop -g my-container-apps -n my-container-apps --yes
 

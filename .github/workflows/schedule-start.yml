@@ -35,18 +35,17 @@ jobs:
           inlineScript: |
             az group show --name FootRG
 
-      - name: Azure container app - Up
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az containerapp create -n my-container-app \
-            -g FootRG \
-            --image seanrreg.azurecr.io/footyapp:latest \
-            --environment footyappenv \
-            --cpu 0.5 --memory 1.0Gi \
-            --min-replicas 4 --max-replicas 8
-
+      # - name: Azure container app - Up
+      #   uses: azure/cli@v2
+      #   with:
+      #     azcliversion: latest
+      #     inlineScript: |
+      #       az containerapp create -n my-container-app \
+      #       -g FootRG \
+      #       --image seanrreg.azurecr.io/footyapp:latest \
+      #       --environment footyappenv \
+      #       --cpu 0.5 --memory 1.0Gi \
+      #       --min-replicas 1 --max-replicas 2
 
         # az containerapp up \
         # --name my-container-app \
