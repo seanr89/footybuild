@@ -31,7 +31,10 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az containerapp env delete -g my-container-apps -n my-container-apps --yes
+            az containerapp env delete \
+            -g my-container-apps \
+            -n my-container-apps \
+            --no-wait true --yes
 
       # - name: Azure container app
       #   uses: azure/cli@v2
