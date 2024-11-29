@@ -10,15 +10,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  connect-add-destroy:
+  connect-and-destroy:
     runs-on: ubuntu-latest
     steps:
       - name: Azure login
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      # Use the Azure CLI to show the current account logged in
-      # az containerapp list
+      # Use the Azure CLI to show the current resource group
       - name: Azure CLI script - show FootRG
         uses: azure/cli@v2
         with:
@@ -31,7 +30,7 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az containerapp delete -g FootRG -n my-container-app
+            az containerapp delete -g FootRG -n my-container-app --yes
 
 
 
