@@ -25,10 +25,18 @@ jobs:
           inlineScript: |
             az group show --name FootRG
 
-      - name: Azure container app - Up
+      
+      - name: Azure container app env - delete
         uses: azure/cli@v2
         with:
           azcliversion: latest
           inlineScript: |
-            az containerapp delete -g my-container-apps -n my-container-apps --yes
+            az containerapp env delete -g my-container-apps -n my-container-apps --yes
+
+      # - name: Azure container app
+      #   uses: azure/cli@v2
+      #   with:
+      #     azcliversion: latest
+      #     inlineScript: |
+      #       az containerapp delete -g my-container-apps -n my-container-apps --yes
 
