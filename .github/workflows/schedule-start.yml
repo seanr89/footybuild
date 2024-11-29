@@ -27,14 +27,15 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       # Use the Azure CLI to show the current account logged in
-      - name: Azure CLI script
+      # az containerapp list
+      - name: Azure CLI script - show FootRG
         uses: azure/cli@v2
         with:
           azcliversion: latest
           inlineScript: |
-            az containerapp list
+            az group show --name FootRG
 
-      - name: Azure container app
+      - name: Azure container app - Up
         uses: azure/cli@v2
         with:
           azcliversion: latest
