@@ -10,10 +10,33 @@ on:
   workflow_dispatch:
 
 jobs:
-  stale:
+  connect-add-destroy:
     runs-on: ubuntu-latest
     steps:
-    - name: Create annotation
-      run: echo "Problem with the build"
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # Use the Azure CLI to show the current account logged in
+      # az containerapp list
+      - name: Azure CLI script - show FootRG
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az group show --name FootRG
+
+      - name: Azure container app - Up
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az containerapp delete -g FootRG -n my-container-app
+
+
+
+
+
+      #az containerapp delete -g MyResourceGroup -n MyContainerapp
 
 
