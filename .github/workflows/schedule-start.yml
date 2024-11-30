@@ -48,7 +48,7 @@ jobs:
             --registry-password ${{ secrets.REGISTRY_LOGIN_PASSWORD }} \
             --registry-server ${{ secrets.REGISTRY_LOGIN_SERVER }} \
             --registry-username ${{ secrets.REGISTRY_LOGIN_NAME }} \
-            --target-port 80 \
+            --target-port 8080 \
             --ingress external \
             --query properties.configuration.ingress.fqdn
 

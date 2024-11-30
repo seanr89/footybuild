@@ -41,5 +41,5 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az containerapp job stop -g my-container-apps -n my-container-apps --yes
+            az containerapp job stop -g FootRG -n my-container-app --yes
 
