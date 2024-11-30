@@ -45,9 +45,9 @@ jobs:
             --location northeurope \
             --environment 'my-container-apps' \
             --image seanrreg.azurecr.io/footyapp:latest \
-            --registry-password ${{ secrets.REGISTRY_LOGIN_SERVER }} \
-            --registry-server ${{ secrets.REGISTRY_LOGIN_NAME }} \
-            --registry-username ${{ secrets.REGISTRY_LOGIN_PASSWORD }} \
+            --registry-password ${{ secrets.REGISTRY_LOGIN_PASSWORD }} \
+            --registry-server ${{ secrets.REGISTRY_LOGIN_SERVER }} \
+            --registry-username ${{ secrets.REGISTRY_LOGIN_NAME }} \
             --target-port 80 \
             --ingress external \
             --query properties.configuration.ingress.fqdn
