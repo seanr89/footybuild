@@ -42,8 +42,7 @@ jobs:
           inlineScript: |
             az containerapp update -n my-container-app -g FootRG \
             --cpu 0.2 --memory 0.1Gi \
-            --min-replicas 0 --max-replicas 2 \
-            --no-wait True
+            --min-replicas 0 --max-replicas 2
 
       # - name: Azure container app stop
       #   uses: azure/cli@v2
