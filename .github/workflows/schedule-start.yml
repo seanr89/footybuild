@@ -34,31 +34,31 @@ jobs:
           inlineScript: |
             az group show --name FootRG
 
-      - name: Azure Create or Update Container App
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az containerapp update -n my-container-app -g FootRG \
-            --cpu 0.5 --memory 0.5Gi \
-            --min-replicas 1 --max-replicas 3 \
-            --no-wait true
-
-      ##### Test flow for creating or updating an existing container app
       # - name: Azure Create or Update Container App
       #   uses: azure/cli@v2
       #   with:
       #     azcliversion: latest
       #     inlineScript: |
-      #       az containerapp up \
-      #       --name my-container-app \
-      #       --resource-group FootRG \
-      #       --location northeurope \
-      #       --environment 'my-container-apps' \
-      #       --image seanrreg.azurecr.io/footyapp:latest \
-      #       --registry-password ${{ secrets.REGISTRY_LOGIN_PASSWORD }} \
-      #       --registry-server ${{ secrets.REGISTRY_LOGIN_SERVER }} \
-      #       --registry-username ${{ secrets.REGISTRY_LOGIN_NAME }} \
-      #       --target-port 8080 \
-      #       --ingress external \
-      #       --query properties.configuration.ingress.fqdn
+      #       az containerapp update -n my-container-app -g FootRG \
+      #       --cpu 0.5 --memory 0.5Gi \
+      #       --min-replicas 1 --max-replicas 3 \
+      #       --no-wait true
+
+      ##### Test flow for creating or updating an existing container app
+      - name: Azure Create or Update Container App
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az containerapp up \
+            --name my-container-app \
+            --resource-group FootRG \
+            --location northeurope \
+            --environment 'my-container-apps' \
+            --image seanrreg.azurecr.io/footyapp:latest \
+            --registry-password ${{ secrets.REGISTRY_LOGIN_PASSWORD }} \
+            --registry-server ${{ secrets.REGISTRY_LOGIN_SERVER }} \
+            --registry-username ${{ secrets.REGISTRY_LOGIN_NAME }} \
+            --target-port 8080 \
+            --ingress external \
+            --query properties.configuration.ingress.fqdn
