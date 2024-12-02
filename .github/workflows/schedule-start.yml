@@ -40,7 +40,7 @@ jobs:
           azcliversion: latest
           inlineScript: |
             az containerapp update -n my-container-app -g FootRG \
-            --cpu 1.0 --memory 0.5Gi \
+            --cpu 1.0 --memory 2.0Gi \
             --min-replicas 1 --max-replicas 3
 
       ##### Test flow for creating or updating an existing container app
