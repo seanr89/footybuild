@@ -25,16 +25,6 @@ jobs:
           inlineScript: |
             az group show --name FootRG
 
-      
-      # - name: Azure container app env - delete
-      #   uses: azure/cli@v2
-      #   with:
-      #     azcliversion: latest
-      #     inlineScript: |
-      #       az containerapp env delete \
-      #       -g my-container-apps \
-      #       -n my-container-apps \
-      #       --no-wait true --yes
       - name: Azure container app scale down
         uses: azure/cli@v2
         with:
@@ -43,11 +33,3 @@ jobs:
             az containerapp update -n my-container-app -g FootRG \
             --cpu 0.25 --memory 0.5Gi \
             --min-replicas 0 --max-replicas 2
-
-      # - name: Azure container app stop
-      #   uses: azure/cli@v2
-      #   with:
-      #     azcliversion: latest
-      #     inlineScript: |
-      #       az containerapp job stop -g FootRG -n my-container-app --yes
-
